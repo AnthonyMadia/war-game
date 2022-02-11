@@ -17,6 +17,14 @@ html {
   font-size: 62.5%;
 }
 
+.card {
+  margin: 3vh;
+}
+
+.card.shadow {
+  box-shadow: 7px 7px 7px 0 rgba(41, 41, 41, 0.95)!important;
+}
+
 body {
   background-color: whitesmoke;
 /* Use a system font, if none are available use an available sans-sarif   font */
@@ -68,4 +76,16 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+}
+
+#score-board {
+  border: solid black .2rem;
+  padding: 10px;
 }
