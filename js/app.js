@@ -1,9 +1,9 @@
 /*-------------------------------- Constants --------------------------------*/
-console.log('sanity check')
+const deck = 
 
 
 /*---------------------------- Variables (state) ----------------------------*/
-
+let playerDeck, playerCard, compDeck, compCard, 
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -15,3 +15,4 @@ console.log('sanity check')
 
 
 /*-------------------------------- Functions --------------------------------*/
+
