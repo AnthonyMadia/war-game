@@ -17,8 +17,13 @@ html {
   font-size: 62.5%;
 }
 
+.card.outline {
+  background-color: rgba(195, 195, 195, 0.338);
+  border: 0.005em dashed #20cedab6;
+}
+
 .card {
-  margin: 3vh;
+  margin: 4vh;
 }
 
 .card.shadow {
@@ -86,6 +91,7 @@ body {
 }
 
 #score-board {
-  border: solid black .2rem;
+  border: solid blue .2rem;
+  border-radius: 14%;
   padding: 10px;
 }
