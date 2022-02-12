@@ -1,6 +1,8 @@
 /*-------------------------------- Constants --------------------------------*/
 const deck = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
 
+
+
 const cardValues = [
   {suit: "dA", rank: 11},
   {suit: "dQ", rank: 10},
@@ -56,14 +58,18 @@ const cardValues = [
   {suit: "s02", rank: 2}
 ]
 
-for (let i = 0; i < deck.length; i++) {
-  for (let j = 0; j < cardValues.length; j++) {
-   if (deck[i] === cardValues[j]) {
-     console.log(cardValues[j])
-   }
-  }
-}
+// for (let i = 0; i < deck.length; i++) {
+//   for (let j = 0; j < cardValues.length; j++) {
+//    if (deck[i] === cardValues[j].suit) {
+//      console.log(cardValues[j].rank)
+//    }
+//   }
+// }
 // console.log(cardValues[0].suit) // this gets suit
+
+
+
+
 
 /*---------------------------- Variables (state) ----------------------------*/
 let playerDeck, warArray, computerDeck, winner
@@ -93,7 +99,7 @@ init()
 
 function init() {
   createDeck()
-  shuffle() // randomize deck
+  shuffle(deck) // randomize deck
   sort() // divide deck between player and computer
   message.textContent = 'Turn Card to Begin!!!'
   pCardsLeft.textContent = ''
@@ -122,10 +128,19 @@ function createDeck() {
   // console.log(cards)
 }
 
-function shuffle(a) {
-  
-}
+// function shuffle(a) {
+//   console.log('randomize deck ')
+// }
 
+function shuffle(deck) {
+  for( 
+    let j, x, i = deck.length; 
+    i; 
+    j = Math.floor(Math.random() * i), 
+    x = deck[--i], deck[i] = deck[j], deck[j] = x
+  );
+  console.log(deck);
+}
 
 function compare() {
   // compare the classes and values of each card with 
@@ -135,15 +150,19 @@ function compare() {
 
 function sort() {
   // after comparing, move cards to winners deck (array)
-  // console.log('sort')
+  console.log('')
 }
 
 
 function render(evt) {
-  //
+  // fix this 
   playerCard.classList.remove('dK')
   computerCard.classList.remove('dA')
   playerCard.classList.add('outline')
   computerCard.classList.add('outline')
   
+}
+
+function war() {
+
 }
