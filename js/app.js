@@ -8,9 +8,8 @@ let keyValues = {
 
 
 
-
 /*---------------------------- Variables (state) ----------------------------*/
-let playerDeck, warArray, computerDeck, winnerTF
+let playerDeck, warArray, computerDeck, playerHand, compHand, playerValue, computerValue
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -19,8 +18,8 @@ const restartBtn = document.querySelector('#restart-btn')
 const message = document.querySelector('.message')
 const playerCard = document.querySelector('.player-card')
 const computerCard = document.querySelector('.comp-card')
-const pCardsLeft = document.querySelector('.p-cards-left')
-const cCardsLeft = document.querySelector('.c-cards-left')
+const pCardsLeft = document.querySelector('.p-cards-left') // player cards left message
+const cCardsLeft = document.querySelector('.c-cards-left') // computer cards message
 const scoreBoard = document.querySelector('#score-board')
 const playerScore = document.querySelector('#player-score')
 const computerScore = document.querySelector('#computer-score')
@@ -34,57 +33,59 @@ restartBtn.addEventListener('click', render)
 /*-------------------------------- Functions --------------------------------*/
 init()
 
-
 function init() {
   shuffle(deck) //// randomize deck
-  split(playerDeck, computerDeck) //// divide deck between player and computer
-  message.textContent = 'Message from init function'
+  
+  message.textContent = 'Message from init function (change)'
   pCardsLeft.textContent = ''
   cCardsLeft.textContent = ''
-  scoreBoard.innerHTML = 'Scoreboard'
+  scoreBoard.innerHTML = 'Scores in init'
   playerCard.innerHTML = ''
   computerCard.innerHTML = ''
-  restartBtn.classList.add('hidden') // fix this 
+  restartBtn.style.visibility = 'hidden' 
   render() // render at end of this function
 }
 
 function handleClick(evt) {
-  getValue()
-
-  
+  //remove outlines
   playerCard.classList.remove('outline')
   computerCard.classList.remove('outline')
-  playerCard.classList.add(`${playerDeck}`) // add random card
-  computerCard.classList.add('dA') // add random card
-  winner()
+  // get card values
+  compare()
+  // compareCards()
+  //dynamically add the class to show card using class list .add
+
+
+  // winner()
 }
+
 function shuffle(deck) {
+  // Shuffle and split
   for( 
     let j, x, i = deck.length; 
     i; 
     j = Math.floor(Math.random() * i), 
     x = deck[--i], deck[i] = deck[j], deck[j] = x
-  );
-}
-
-function split(pDeck, cDeck) {
-  // after comparing, move cards to winners deck (array)
-  playerDeck = deck.slice(0,26)
-  computerDeck = deck.slice(26, 52)
-  console.log(playerDeck, computerDeck)
+    );
+    a = deck.slice(0,26)
+    b = deck.slice(26, 52)
+    console.log(a, b)
 }
 
 
-function getValue(card1, card2) {
-  const randomIndex1 = Math.floor(Math.random() * (playerDeck.length))
-  const randomIndex2 = Math.floor(Math.random() * (computerDeck.length))
-  const selectedCard1 = playerDeck[randomIndex1]
-  const selectedCard2 = computerDeck[randomIndex2]
-  const player = keyValues[selectedCard1]
-  const computer = keyValues[selectedCard2]
-  console.log('Player Value:', player)
-  console.log('Computer Value:', computer)
+
+
+
+function compare(card1, card2) {
+  const pCardValue  = Math.floor(Math.random() * (playerDeck.length))
+  const cCardValue = Math.floor(Math.random() * (computerDeck.length))
+  const selectedCard1 = playerDeck[pCardValue]
+  const selectedCard2 = computerDeck[cCardValue]
+  card1 = keyValues[selectedCard1]
+  card2 = keyValues[selectedCard2]
+  return card1, card2
 }
+
 
 
 
@@ -94,15 +95,14 @@ function winner() {
   console.log('compare')
 }
 
-
-
-
 function render(evt) {
   // fix this 
-  playerCard.classList.remove('dK')
-  computerCard.classList.remove('dA')
+  // playerCard.classList.add('')
+  // computerCard.classList.add('')
   playerCard.classList.add('outline')
   computerCard.classList.add('outline')
+  // restartBtn.style.visibility = '' 
+
   
 }
 
