@@ -9,8 +9,7 @@ let keyValues = {
 
 
 /*---------------------------- Variables (state) ----------------------------*/
-let playerDeck, warArray, computerDeck, playerHand, compHand, playerValue, computerValue
-
+let playerDeck, warArray, computerDeck,  playerValue, computerValue, playerHand, compHand, playerPick, compPick 
 
 /*------------------------ Cached Element References ------------------------*/
 const turnCard = document.querySelector('#turn-btn')
@@ -35,7 +34,8 @@ init()
 
 function init() {
   shuffle(deck) //// randomize deck
-  
+  // push cards into hands array
+
   message.textContent = 'Message from init function (change)'
   pCardsLeft.textContent = ''
   cCardsLeft.textContent = ''
@@ -50,8 +50,8 @@ function handleClick(evt) {
   //remove outlines
   playerCard.classList.remove('outline')
   computerCard.classList.remove('outline')
-  // get card values
-  compare()
+  //  card values
+  getValue()
   // compareCards()
   //dynamically add the class to show card using class list .add
 
@@ -67,33 +67,46 @@ function shuffle(deck) {
     j = Math.floor(Math.random() * i), 
     x = deck[--i], deck[i] = deck[j], deck[j] = x
     );
-    a = deck.slice(0,26)
-    b = deck.slice(26, 52)
-    console.log(a, b)
+    playerDeck = deck.slice(0,26)
+    computerDeck = deck.slice(26, 52)
+    console.log(playerDeck, computerDeck)
 }
 
+function fillHands() {
+  //push cards into hands array
+  playerHand = []
+  compHand = []
+  if (playerHand.length < 0) {
+    playerPick = playerDeck.pop()
+    playerHand.push(playerPick)
+  }
+  if (compHand.length < 0) {
+    compPick = computerDeck.pop()
+    compHand.push(compPick)
+  }
+  console.log(playerHand, compHand)
+}
 
-
-
-
-function compare(card1, card2) {
+fillHands()
+function getValue(card1, card2) {
   const pCardValue  = Math.floor(Math.random() * (playerDeck.length))
   const cCardValue = Math.floor(Math.random() * (computerDeck.length))
-  const selectedCard1 = playerDeck[pCardValue]
-  const selectedCard2 = computerDeck[cCardValue]
-  card1 = keyValues[selectedCard1]
-  card2 = keyValues[selectedCard2]
-  return card1, card2
+  const playersCard = playerDeck[pCardValue]
+  const compsCard = computerDeck[cCardValue]
+  card1 = keyValues[playersCard]
+  card2 = keyValues[compsCard]
+  console.log(`Player: ${card1},Computer: ${card2}`) 
 }
-
-
-
+function compareCards(a, b) {
+  console.log('compare cards fun')
+}
 
 function winner() {
   // compare the classes and values of each card with 
   // the object of cards; move into winner deck
   console.log('compare')
 }
+
 
 function render(evt) {
   // fix this 
