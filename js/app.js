@@ -55,8 +55,10 @@ function handleClick(evt) {
   fillHands()
   showCards()
   compare() 
-  
-  // winner()
+  winner()
+}
+function winner() {
+  console.log('include logic for winner')
 }
 
 
@@ -75,16 +77,13 @@ function shuffle(deck) {
   
   
 function fillHands() {
-  //pop card from playerDeck 
+  //pop card from playerDeck/compDeck
   //push cards into hands array
   
   playerPick = playerDeck.pop()
-  console.log(playerPick)
   playerHand.push(playerPick)
   compPick = computerDeck.pop()
-  console.log(compPick)
   compHand.push(compPick)
-  console.log(playerHand, compHand)
 }
 
 function showCards() {
@@ -109,15 +108,27 @@ function compare() {
     // show that player/computer won and add that card to player's deck
     if (compHand.length > 0) {
       let playerCardPush = compHand[compHand.length - 1]
-      playerHand.push(playerCardPush)
-      console.log('player wins this round')
+      playerDeck.push(playerCardPush)
+      // pCardsLeft.textContent = `Player has ${playerDeck.length} cards left!` // these are wrong
+      // cCardsLeft.textContent = `Computer has ${computerDeck.length} cards left!`
+      console.log(playerDeck.length)
+      console.log(' Player wins this round')
+      message.textContent = '🧑 Player wins this round!'
     }
   } else if (cCardValue > pCardValue) {
     if (playerHand.length > 0) {
       let computerCardPush = playerHand[playerHand.length - 1]
-      compHand.push(computerCardPush)
+      computerDeck.push(computerCardPush)
+      // pCardsLeft.textContent = `Player has ${playerDeck.length} cards left!`
+      // cCardsLeft.textContent = `Computer has ${computerDeck.length} cards left!`
+      console.log(computerDeck.length)
       console.log('Computer Wins this round')
+      message.textContent = '💻 Computer wins this round!'
     }
+  } else {
+    console.log('war!!!!!!')
+    message.textContent = 'WARRRRRRR ⚔️'
+
   }
 }
 
@@ -129,6 +140,4 @@ function render(evt) {
   playerCard.classList.add('outline')
   computerCard.classList.add('outline')
   // restartBtn.style.visibility = '' 
-
-  
 }
