@@ -9,7 +9,7 @@ let keyValues = {
 
 
 /*---------------------------- Variables (state) ----------------------------*/
-let playerDeck, warArray, computerDeck,  playerValue, computerValue, playerHand, compHand, playerPick, compPick 
+let playerDeck = [], warArray = [], computerDeck = [],  playerValue, computerValue, playerHand = [], compHand = [], playerPick = [], compPick = []
 
 /*------------------------ Cached Element References ------------------------*/
 const turnCard = document.querySelector('#turn-btn')
@@ -33,9 +33,8 @@ restartBtn.addEventListener('click', render)
 init()
 
 function init() {
-  shuffle(deck) //// randomize deck
   // push cards into hands array
-
+  
   message.textContent = 'Message from init function (change)'
   pCardsLeft.textContent = ''
   cCardsLeft.textContent = ''
@@ -51,11 +50,11 @@ function handleClick(evt) {
   playerCard.classList.remove('outline')
   computerCard.classList.remove('outline')
   //  card values
-  getValue()
+  fillHands()
   // compareCards()
   //dynamically add the class to show card using class list .add
 
-
+  
   // winner()
 }
 
@@ -71,23 +70,24 @@ function shuffle(deck) {
     computerDeck = deck.slice(26, 52)
     console.log(playerDeck, computerDeck)
 }
-
+  
+shuffle(deck)
+  
 function fillHands() {
+  //pop card from playerDeck 
   //push cards into hands array
-  playerHand = []
-  compHand = []
-  if (playerHand.length < 0) {
-    playerPick = playerDeck.pop()
-    playerHand.push(playerPick)
-  }
-  if (compHand.length < 0) {
-    compPick = computerDeck.pop()
-    compHand.push(compPick)
-  }
+  
+  playerPick = playerDeck.pop()
+  console.log(playerDeck)
+  playerHand.push(playerPick)
+  compPick = computerDeck.pop()
+  console.log(computerDeck)
+  compHand.push(compPick)
   console.log(playerHand, compHand)
 }
 
-fillHands()
+
+
 function getValue(card1, card2) {
   const pCardValue  = Math.floor(Math.random() * (playerDeck.length))
   const cCardValue = Math.floor(Math.random() * (computerDeck.length))
@@ -97,21 +97,15 @@ function getValue(card1, card2) {
   card2 = keyValues[compsCard]
   console.log(`Player: ${card1},Computer: ${card2}`) 
 }
+
 function compareCards(a, b) {
   console.log('compare cards fun')
-}
-
-function winner() {
-  // compare the classes and values of each card with 
-  // the object of cards; move into winner deck
-  console.log('compare')
 }
 
 
 function render(evt) {
   // fix this 
-  // playerCard.classList.add('')
-  // computerCard.classList.add('')
+  // playerCard.setAttribute("class", `${playerHand[playerHand - 1]}`)
   playerCard.classList.add('outline')
   computerCard.classList.add('outline')
   // restartBtn.style.visibility = '' 
@@ -120,5 +114,5 @@ function render(evt) {
 }
 
 function war() {
-
+  // called if values from playerHand and compHand equal each other
 }
