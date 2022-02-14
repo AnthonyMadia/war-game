@@ -7,9 +7,8 @@ let keyValues = {
 
 
 
-
 /*---------------------------- Variables (state) ----------------------------*/
-let playerDeck = [], warArray = [], computerDeck = [],  playerValue, computerValue, playerHand = [], compHand = [], playerPick = [], compPick = []
+let playerDeck = [], warArray = [], computerDeck = [], playerHand = [], compHand = [], playerPick = [], compPick = [], playerValue, computerValue
 
 /*------------------------ Cached Element References ------------------------*/
 const turnCard = document.querySelector('#turn-btn')
@@ -54,24 +53,13 @@ function handleClick(evt) {
   computerCard.classList.remove('outline')
   //  card values
   fillHands()
-  // compareCards()
   showCards()
+  getValue() // pass in last card?
+  // compareCards()
   
   // winner()
 }
 
-function showCards() {
-  //dynamically add the class to show card 
-  playerCard.className = `card xlarge player-card ${playerHand[playerHand.length - 1]}`
-  console.log(playerHand[playerHand.length -1])
-  computerCard.className = `card xlarge comp-card ${compHand[compHand.length - 1]}`
-  console.log(compHand[compHand.length - 1])
-  // remove outline to show deck has less cards
-  if (playerHand.length >= 13 && compHand.length >= 13) {
-    playerDeck.className = "card xlarge back-blue"
-    computerDeck.className = "card xlarge back-blue"
-  } 
-}
 
 function shuffle(deck) {
   // Shuffle and split
@@ -83,7 +71,7 @@ function shuffle(deck) {
     );
     playerDeck = deck.slice(0,26)
     computerDeck = deck.slice(26, 52)
-    console.log(playerDeck, computerDeck)
+    // console.log(playerDeck, computerDeck)
 }
   
   
@@ -92,25 +80,37 @@ function fillHands() {
   //push cards into hands array
   
   playerPick = playerDeck.pop()
-  console.log(playerDeck)
+  console.log(playerPick)
   playerHand.push(playerPick)
   compPick = computerDeck.pop()
-  console.log(computerDeck)
+  console.log(compPick)
   compHand.push(compPick)
   console.log(playerHand, compHand)
 }
 
-
-
-function getValue(card1, card2) {
-  const pCardValue  = Math.floor(Math.random() * (playerDeck.length))
-  const cCardValue = Math.floor(Math.random() * (computerDeck.length))
-  const playersCard = playerDeck[pCardValue]
-  const compsCard = computerDeck[cCardValue]
-  card1 = keyValues[playersCard]
-  card2 = keyValues[compsCard]
-  console.log(`Player: ${card1},Computer: ${card2}`) 
+function showCards() {
+  //dynamically add the class to show card 
+  playerCard.className = `card xlarge player-card ${playerHand[playerHand.length - 1]}`
+  computerCard.className = `card xlarge comp-card ${compHand[compHand.length - 1]}`
+  // remove outline to show deck has less cards *** work on this later
+  // if (playerHand.length >= 13 && compHand.length >= 13) {
+  //   console.log(playerHand.length)
+  //   playerDeck.className = `card xlarge back-blue`
+  //   computerDeck.className = "card xlarge back-blue"
+  // } 
 }
+
+
+
+function getValue() {
+  const pCardValue  = keyValues[playerPick]
+  const cCardValue = keyValues[compPick]
+  console.log(pCardValue,cCardValue)
+  if (pCardValue > cCardValue) {
+    // show that player won and add that card to player's deck
+  } 
+}
+
 
 function compareCards(a, b) {
   console.log('compare cards fun')
