@@ -84,7 +84,7 @@ function fillHands() {
   compPick = computerDeck.pop()
   console.log(compPick)
   compHand.push(compPick)
-  // console.log(playerHand, compHand)
+  console.log(playerHand, compHand)
 }
 
 function showCards() {
@@ -108,16 +108,14 @@ function compare() {
   if (pCardValue > cCardValue) {
     // show that player/computer won and add that card to player's deck
     if (compHand.length > 0) {
-      let playerCardPush = compHand[compHand - 1]
+      let playerCardPush = compHand[compHand.length - 1]
       playerHand.push(playerCardPush)
-      console.log(playerCardPush)
       console.log('player wins this round')
     }
   } else if (cCardValue > pCardValue) {
     if (playerHand.length > 0) {
-      let computerCardPush = playerHand[playerHand - 1]
+      let computerCardPush = playerHand[playerHand.length - 1]
       compHand.push(computerCardPush)
-      console.log(computerCardPush)
       console.log('Computer Wins this round')
     }
   }
