@@ -18,9 +18,9 @@ const playerCard = document.querySelector('.player-card') // add class to player
 const computerCard = document.querySelector('.comp-card') // add class to computer's card
 const pCardsLeft = document.querySelector('.p-cards-left') // player cards left message
 const cCardsLeft = document.querySelector('.c-cards-left') // computer cards message
-const scoreBoard = document.querySelector('#score-board')
-const playerScore = document.querySelector('#player-score')
-const computerScore = document.querySelector('#computer-score')
+const scoreBoard = document.querySelector('#score-board') //score board
+const playerScore = document.querySelector('#player-score') //score board
+const computerScore = document.querySelector('#computer-score') //scoreboard
 const playerOutline = document.querySelector('.player-deck')
 const computerOutline = document.querySelector('.comp-deck')
 
@@ -35,8 +35,6 @@ init()
 
 function init() {
   shuffle(deck)
-  // push cards into hands array
-  
   message.textContent = 'Message from init function (change)'
   pCardsLeft.textContent = ''
   cCardsLeft.textContent = ''
@@ -48,15 +46,15 @@ function init() {
 }
 
 function handleClick(evt) {
-  //remove outlines
   playerCard.classList.remove('outline')
   computerCard.classList.remove('outline')
-  //  card values
+  
   fillHands()
   showCards()
   compare() 
-  winner()
+  // winner()
 }
+
 function winner() {
   console.log('include logic for winner')
 }
@@ -103,35 +101,31 @@ function showCards() {
 function compare() {
   const pCardValue  = keyValues[playerPick]
   const cCardValue = keyValues[compPick]
-  console.log(pCardValue,cCardValue)
+
   if (pCardValue > cCardValue) {
-    // show that player/computer won and add that card to player's deck
     if (compHand.length > 0) {
       let playerCardPush = compHand[compHand.length - 1]
-      playerDeck.push(playerCardPush)
-      // pCardsLeft.textContent = `Player has ${playerDeck.length} cards left!` // these are wrong
-      // cCardsLeft.textContent = `Computer has ${computerDeck.length} cards left!`
-      console.log(playerDeck.length)
-      console.log(' Player wins this round')
+      computerDeck.pop(playerCardPush)
+      playerDeck.unshift(playerCardPush)
       message.textContent = '🧑 Player wins this round!'
     }
+
   } else if (cCardValue > pCardValue) {
     if (playerHand.length > 0) {
       let computerCardPush = playerHand[playerHand.length - 1]
-      computerDeck.push(computerCardPush)
-      // pCardsLeft.textContent = `Player has ${playerDeck.length} cards left!`
-      // cCardsLeft.textContent = `Computer has ${computerDeck.length} cards left!`
-      console.log(computerDeck.length)
-      console.log('Computer Wins this round')
+      playerDeck.pop(computerCardPush)
+      computerDeck.unshift(computerCardPush)
       message.textContent = '💻 Computer wins this round!'
     }
-  } else {
+  } 
+  else {
     console.log('war!!!!!!')
     message.textContent = 'WARRRRRRR ⚔️'
-
   }
+  const playerTotal = playerDeck.length + playerHand.length
+  const compTotal = computerDeck.length + compHand.length
+  console.log(playerTotal, compTotal)
 }
-
 
 
 function render(evt) {
