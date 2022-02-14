@@ -15,8 +15,8 @@ let playerDeck = [], warArray = [], computerDeck = [],  playerValue, computerVal
 const turnCard = document.querySelector('#turn-btn')
 const restartBtn = document.querySelector('#restart-btn')
 const message = document.querySelector('.message')
-const playerCard = document.querySelector('.player-card')
-const computerCard = document.querySelector('.comp-card')
+const playerCard = document.querySelector('.player-card') // add class to player's card
+const computerCard = document.querySelector('.comp-card') // add class to computer's card
 const pCardsLeft = document.querySelector('.p-cards-left') // player cards left message
 const cCardsLeft = document.querySelector('.c-cards-left') // computer cards message
 const scoreBoard = document.querySelector('#score-board')
@@ -33,6 +33,7 @@ restartBtn.addEventListener('click', render)
 init()
 
 function init() {
+  shuffle(deck)
   // push cards into hands array
   
   message.textContent = 'Message from init function (change)'
@@ -52,10 +53,19 @@ function handleClick(evt) {
   //  card values
   fillHands()
   // compareCards()
-  //dynamically add the class to show card using class list .add
-
+  showCards()
   
   // winner()
+}
+
+function showCards() {
+  //dynamically add the class to show card 
+  playerCard.classList.add("class", `${playerHand[playerHand.length - 1]}` )
+  computerCard.classList.add("class", `${compHand[compHand.length - 1]}` )
+
+  if (playerHand >= 13 && compHand >= 13) {
+    
+  } 
 }
 
 function shuffle(deck) {
@@ -71,7 +81,6 @@ function shuffle(deck) {
     console.log(playerDeck, computerDeck)
 }
   
-shuffle(deck)
   
 function fillHands() {
   //pop card from playerDeck 
