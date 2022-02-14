@@ -52,16 +52,20 @@ function handleClick(evt) {
   fillHands()
   showCards()
   compare() 
-  // winner()
+  winner()
 }
 
 function winner() {
-  console.log('include logic for winner')
+  // if (playerDeck.length > 0  && computerDeck === undefined) {
+  //   message.textContent = 'Player Wins the game!!!'
+  //   confetti.start(2000)
+  // } else if (computerDeck.length > 0 && computerDeck === undefined) {
+  //   message.textContent = 'Computer Wins the game!!'
+  // }
 }
 
 
 function shuffle(deck) {
-  // Shuffle and split
   for( 
     let j, x, i = deck.length; 
     i; 
@@ -70,14 +74,10 @@ function shuffle(deck) {
     );
     playerDeck = deck.slice(0,26)
     computerDeck = deck.slice(26, 52)
-    // console.log(playerDeck, computerDeck)
 }
   
   
 function fillHands() {
-  //pop card from playerDeck/compDeck
-  //push cards into hands array
-  
   playerPick = playerDeck.pop()
   playerHand.push(playerPick)
   compPick = computerDeck.pop()
@@ -85,15 +85,8 @@ function fillHands() {
 }
 
 function showCards() {
-  //dynamically add the class to show card 
   playerCard.className = `card xlarge player-card ${playerHand[playerHand.length - 1]}`
   computerCard.className = `card xlarge comp-card ${compHand[compHand.length - 1]}`
-  // remove outline to show deck has less cards *** work on this later
-  // if (playerHand.length >= 13 && compHand.length >= 13) {
-  //   console.log(playerHand.length)
-  //   playerDeck.className = `card xlarge back-blue`
-  //   computerDeck.className = "card xlarge back-blue"
-  // } 
 }
 
 
@@ -104,40 +97,30 @@ function compare() {
 
   if (pCardValue > cCardValue) {
     if (compHand.length > 0) {
-      let playerCardPush = compHand[compHand.length - 1]
-      computerDeck.pop(playerCardPush)
+      let playerCardPush = compHand.pop()
       playerDeck.unshift(playerCardPush)
       message.textContent = '🧑 Player wins this round!'
     }
 
   } else if (cCardValue > pCardValue) {
     if (playerHand.length > 0) {
-      let computerCardPush = playerHand[playerHand.length - 1]
-      playerDeck.pop(computerCardPush)
+      let computerCardPush = playerHand.pop()
       computerDeck.unshift(computerCardPush)
       message.textContent = '💻 Computer wins this round!'
     }
-  } else {
+  } 
+  else {
     war()
   }
-
-  playerTotal = playerDeck.length + playerHand.length
-  compTotal = computerDeck.length + compHand.length
-  console.log(playerTotal, compTotal)
-  // if (playerTotal > 0 && compTotal === 0) {
-  //   message.textContent = 'Player is the WINNER!'
-  //   winner()
-  // } else {
-  //   message.textContent = 'Computer is the WINNER!'
-  //   winner()
-  // }
+  console.log(playerDeck, computerDeck)
+  console.log(playerHand, compHand)
 }
 
+
+
 function war() {
-  message.textContent = 'WARRRRRRR ⚔️'
-  let playerLastThree = playerDeck.slice(-3)
-  let compLastThree = computerDeck.slice(-3)
-  console.log(playerLastThree, compLastThree)
+
+
 }
 
 
