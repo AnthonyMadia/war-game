@@ -54,8 +54,7 @@ function handleClick(evt) {
   //  card values
   fillHands()
   showCards()
-  getValue() // pass in last card?
-  // compareCards()
+  compare() 
   
   // winner()
 }
@@ -85,7 +84,7 @@ function fillHands() {
   compPick = computerDeck.pop()
   console.log(compPick)
   compHand.push(compPick)
-  console.log(playerHand, compHand)
+  // console.log(playerHand, compHand)
 }
 
 function showCards() {
@@ -102,19 +101,28 @@ function showCards() {
 
 
 
-function getValue() {
+function compare() {
   const pCardValue  = keyValues[playerPick]
   const cCardValue = keyValues[compPick]
   console.log(pCardValue,cCardValue)
   if (pCardValue > cCardValue) {
-    // show that player won and add that card to player's deck
-  } 
+    // show that player/computer won and add that card to player's deck
+    if (compHand.length > 0) {
+      let playerCardPush = compHand[compHand - 1]
+      playerHand.push(playerCardPush)
+      console.log(playerCardPush)
+      console.log('player wins this round')
+    }
+  } else if (cCardValue > pCardValue) {
+    if (playerHand.length > 0) {
+      let computerCardPush = playerHand[playerHand - 1]
+      compHand.push(computerCardPush)
+      console.log(computerCardPush)
+      console.log('Computer Wins this round')
+    }
+  }
 }
 
-
-function compareCards(a, b) {
-  console.log('compare cards fun')
-}
 
 
 function render(evt) {
@@ -125,8 +133,4 @@ function render(evt) {
   // restartBtn.style.visibility = '' 
 
   
-}
-
-function war() {
-  // called if values from playerHand and compHand equal each other
 }
