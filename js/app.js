@@ -22,6 +22,8 @@ const cCardsLeft = document.querySelector('.c-cards-left') // computer cards mes
 const scoreBoard = document.querySelector('#score-board')
 const playerScore = document.querySelector('#player-score')
 const computerScore = document.querySelector('#computer-score')
+const playerOutline = document.querySelector('.player-deck')
+const computerOutline = document.querySelector('.comp-deck')
 
 /*----------------------------- Event Listeners -----------------------------*/
 turnCard.addEventListener('click', handleClick)
@@ -60,11 +62,14 @@ function handleClick(evt) {
 
 function showCards() {
   //dynamically add the class to show card 
-  playerCard.classList.add("class", `${playerHand[playerHand.length - 1]}` )
-  computerCard.classList.add("class", `${compHand[compHand.length - 1]}` )
-
-  if (playerHand >= 13 && compHand >= 13) {
-    
+  playerCard.className = `card xlarge player-card ${playerHand[playerHand.length - 1]}`
+  console.log(playerHand[playerHand.length -1])
+  computerCard.className = `card xlarge comp-card ${compHand[compHand.length - 1]}`
+  console.log(compHand[compHand.length - 1])
+  // remove outline to show deck has less cards
+  if (playerHand.length >= 13 && compHand.length >= 13) {
+    playerDeck.className = "card xlarge back-blue"
+    computerDeck.className = "card xlarge back-blue"
   } 
 }
 
