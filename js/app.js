@@ -8,7 +8,7 @@ let keyValues = {
 
 
 /*---------------------------- Variables (state) ----------------------------*/
-let playerDeck = [], warArray = [], computerDeck = [], playerHand = [], compHand = [], playerPick = [], compPick = [], playerValue, computerValue
+let playerDeck = [], warArray = [], computerDeck = [], playerHand = [], compHand = [], playerPick = [], compPick = [], playerValue, computerValue, playerTotal, compTotal
 
 /*------------------------ Cached Element References ------------------------*/
 const turnCard = document.querySelector('#turn-btn')
@@ -117,14 +117,27 @@ function compare() {
       computerDeck.unshift(computerCardPush)
       message.textContent = '💻 Computer wins this round!'
     }
-  } 
-  else {
-    console.log('war!!!!!!')
-    message.textContent = 'WARRRRRRR ⚔️'
+  } else {
+    war()
   }
-  const playerTotal = playerDeck.length + playerHand.length
-  const compTotal = computerDeck.length + compHand.length
+
+  playerTotal = playerDeck.length + playerHand.length
+  compTotal = computerDeck.length + compHand.length
   console.log(playerTotal, compTotal)
+  // if (playerTotal > 0 && compTotal === 0) {
+  //   message.textContent = 'Player is the WINNER!'
+  //   winner()
+  // } else {
+  //   message.textContent = 'Computer is the WINNER!'
+  //   winner()
+  // }
+}
+
+function war() {
+  message.textContent = 'WARRRRRRR ⚔️'
+  let playerLastThree = playerDeck.slice(-3)
+  let compLastThree = computerDeck.slice(-3)
+  console.log(playerLastThree, compLastThree)
 }
 
 
