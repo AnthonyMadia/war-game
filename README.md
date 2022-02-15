@@ -8,7 +8,7 @@ https://anthonymadia.github.io/war-game/
 ## How to Play:
 ♦️ Playing the war card game is as simple as clicking the "Turn Card" button displayed in the browser. 
 
-🔘 Pressing this button will automatically render the player's card, the computer's card, and compare the two. 
+🔘 Pressing the "Turn Card" button will automatically render the player's card, the computer's card, and compare the two. 
 
 🌟 The winner will have the loser's card added to their deck. 
 
