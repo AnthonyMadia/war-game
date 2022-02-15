@@ -1,5 +1,9 @@
 # War!
 
+## Description of Game:
+♣️ War (also known as Battle in the United Kingdom) is a simple card game, typically played by two players using a standard playing card deck[2] — and often played by children.
+
+💡 I decided to create this game because it was one of the first card games I played and thought it would be cool to represent it digitially for my first DOM browser game.
 
 ## Deploy Link:
 https://anthonymadia.github.io/war-game/
