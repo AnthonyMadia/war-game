@@ -55,15 +55,15 @@ function handleClick(evt) {
   winner()
 }
 
-function winner() {
-  // if (playerDeck.length > 0  && computerDeck === undefined) {
-  //   message.textContent = 'Player Wins the game!!!'
-  //   confetti.start(2000)
-  // } else if (computerDeck.length > 0 && computerDeck === undefined) {
-  //   message.textContent = 'Computer Wins the game!!'
-  // }
+function winner(){
+  if (playerDeck.length === 0 && playerHand.length === 0) {
+    message.textContent = `Computer is the winner.`
+  }
+  else if (computerDeck.length === 0 && compHand.length === 0) {
+    message.textContent = `Player is the winner.`
+  }
+  restartBtn.removeAttribute('hidden')
 }
-
 
 function shuffle(deck) {
   for( 
@@ -92,28 +92,28 @@ function showCards() {
 
 
 function compare() {
+  // if (playerPick === null || compPick === null) {
+  //   return console.log('null stuff')
+  // }
   const pCardValue  = keyValues[playerPick]
   const cCardValue = keyValues[compPick]
 
   if (pCardValue > cCardValue) {
-    if (compHand.length > 0) {
-      let playerCardPush = compHand.pop()
-      playerDeck.unshift(playerCardPush)
-      message.textContent = '🧑 Player wins this round!'
-    }
+    let playerCardPush = compHand.pop()
+    console.log(playerCardPush)
+    playerDeck.unshift(playerCardPush)
+    console.log(playerDeck)
+    message.textContent = '🧑 Player wins this round!'
 
-  } else if (cCardValue > pCardValue) {
-    if (playerHand.length > 0) {
-      let computerCardPush = playerHand.pop()
-      computerDeck.unshift(computerCardPush)
-      message.textContent = '💻 Computer wins this round!'
-    }
+  } else if (pCardValue < cCardValue) {
+    let computerCardPush = playerHand.pop()
+    console.log(computerCardPush)
+    computerDeck.unshift(computerCardPush)
+    message.textContent = '💻 Computer wins this round!'
   } 
-  else {
+  else if (pCardValue === cCardValue) {
     war()
   }
-  console.log(playerDeck, computerDeck)
-  console.log(playerHand, compHand)
 }
 
 
@@ -125,8 +125,7 @@ function war() {
 
 
 function render(evt) {
-  // fix this 
-  // playerCard.setAttribute("class", `${playerHand[playerHand - 1]}`)
+  
   playerCard.classList.add('outline')
   computerCard.classList.add('outline')
   // restartBtn.style.visibility = '' 
