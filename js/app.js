@@ -136,6 +136,8 @@ function war() {
   for (let i = 0; i < compWarValues.length; i++) {
     playerDeck.push(compWarValues[i]);
   }
+
+  compare()
 }
 
 
