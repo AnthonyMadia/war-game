@@ -101,14 +101,11 @@ function compare() {
 
   if (pCardValue > cCardValue) {
     let playerCardPush = compHand.pop()
-    console.log(playerCardPush)
     playerDeck.unshift(playerCardPush)
-    console.log(playerDeck)
     message.textContent = '🧑 Player wins this round!'
 
   } else if (pCardValue < cCardValue) {
     let computerCardPush = playerHand.pop()
-    console.log(computerCardPush)
     computerDeck.unshift(computerCardPush)
     message.textContent = '💻 Computer wins this round!'
   } 
@@ -117,6 +114,8 @@ function compare() {
     message.textContent = '⚔️ WAR ⚔️'
     war()
   }
+  console.log(playerDeck.length)
+  console.log(computerDeck.length)
 }
 
 
@@ -125,12 +124,14 @@ function war() {
   
   let playerWarValues = playerDeck.slice(-3)
   let compWarValues = computerDeck.slice(-3)
-  
-  console.log(`Last 3 cards in player's deck ${playerWarValues}`)
+  console.log(playerDeck.length)
   for (let i = 0; i < playerWarValues.length; i++) {
     computerDeck.push(playerWarValues[i])
+    playerDeck.splice(-3, 3)
+
   }
-  console.log(`After adding 3 cards to COMP deck, player deck length is ${playerDeck.length} and player cards are ${playerDeck}. Comp deck length is ${computerDeck.length} and comp cards are ${computerDeck}`)
+  console.log(playerDeck.length)
+  
 
   for (let i = 0; i < compWarValues.length; i++) {
     playerDeck.push(compWarValues[i]);
