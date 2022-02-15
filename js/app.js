@@ -41,7 +41,7 @@ function init() {
   scoreBoard.innerHTML = 'Scores in init'
   playerCard.innerHTML = ''
   computerCard.innerHTML = ''
-  restartBtn.style.visibility = 'hidden' 
+  // restartBtn.style.visibility = 'hidden' 
   render() // render at end of this function
 }
 
@@ -57,6 +57,7 @@ function handleClick(evt) {
 
 function winner(){
   if (playerDeck.length === 0 && playerHand.length === 0) {
+    console.log('sanity check')
     message.textContent = `Computer is the winner.`
   }
   else if (computerDeck.length === 0 && compHand.length === 0) {
@@ -112,6 +113,8 @@ function compare() {
     message.textContent = '💻 Computer wins this round!'
   } 
   else if (pCardValue === cCardValue) {
+    console.log('Tie game!!!!!')
+    message.textContent = '⚔️ WAR ⚔️'
     war()
   }
 }
@@ -119,8 +122,19 @@ function compare() {
 
 
 function war() {
+  
+  let playerWarValues = playerDeck.slice(-3)
+  let compWarValues = computerDeck.slice(-3)
+  
+  console.log(`Last 3 cards in player's deck ${playerWarValues}`)
+  for (let i = 0; i < playerWarValues.length; i++) {
+    computerDeck.push(playerWarValues[i])
+  }
+  console.log(`After adding 3 cards to COMP deck, player deck length is ${playerDeck.length} and player cards are ${playerDeck}. Comp deck length is ${computerDeck.length} and comp cards are ${computerDeck}`)
 
-
+  for (let i = 0; i < compWarValues.length; i++) {
+    playerDeck.push(compWarValues[i]);
+  }
 }
 
 
