@@ -41,8 +41,7 @@ function init() {
   scoreBoard.innerHTML = 'Scores in init'
   playerCard.innerHTML = ''
   computerCard.innerHTML = ''
-  // restartBtn.style.visibility = 'hidden' 
-  render() // render at end of this function
+  restartBtn.style.visibility = 'hidden'
 }
 
 function handleClick(evt) {
