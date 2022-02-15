@@ -106,39 +106,58 @@ function compare() {
     message.textContent = '💻 Computer wins this round!'
   } 
   else if (pCardValue === cCardValue) {
-    console.log('WAR!!!!!')
     message.textContent = '⚔️ WAR ⚔️'
-    war()
+    turnCard.style.visibility = 'hidden' 
+    setTimeout(() => {war()}, 2000);
+    
   }
 }
+
 
 
 
 function war() {
   let playerWarCards = playerDeck.slice(-4)
   let compWarCards= computerDeck.slice(-4)
+  // Get the value of the war card
   let pWarPlayerValue = keyValues[playerWarCards[playerWarCards.length - 1]]
   let cWarPlayerValue = keyValues[compWarCards[compWarCards.length - 1]]
   console.log(pWarPlayerValue, cWarPlayerValue)
-  // if () {
-  //   for (let i = 0; i < playerWarCards.length; i++) {
-  //     computerDeck.push(playerWarCards[i])
-  //   }
-  // }
+  if (pWarPlayerValue > cWarPlayerValue) {
+    for (let i = 0; i < compWarCards.length; i++) {
+      playerDeck.unshift(compWarCards[i])
+    }
+    removeCards(computerDeck)
+    message.textContent = `PLAYER HAS WON WAR. Length of Card deck is ^ ${playerDeck.length}`
+    playerCard.className = `card xlarge player-card ${playerWarCards[playerWarCards.length - 1]}`
+    computerCard.className = `card xlarge player-card ${compWarCards[compWarCards.length - 1]}`
+    console.log(playerWarCards[playerWarCards.length - 1])
+  } else if (pWarPlayerValue < cWarPlayerValue) {
+    for (let i = 0; i < playerWarCards.length; i++) {
+      computerDeck.unshift(playerWarCards[i])
+    }
+    removeCards(playerDeck)
+    message.textContent = `COMPUTER HAS WON WAR. Length of comp deck is ^ ${computerDeck.length}`
+    playerCard.className = `card xlarge player-card ${playerWarCards[playerWarCards.length - 1]}`
+    computerCard.className = `card xlarge player-card ${compWarCards[compWarCards.length - 1]}`
+    console.log(compWarCards[compWarCards.length - 1])
 
-  
-
-  // for (let i = 0; i < compWarValues.length; i++) {
-  //   playerDeck.push(compWarValues[i]);
-  // }
+  }
+  turnCard.style.visibility = '' 
 }
 
+function removeCards(arr) {
+  arr.pop()
+  arr.pop()
+  arr.pop()
+  arr.pop()
+}
 
 function render(evt) {
   
   playerCard.classList.add('outline')
   computerCard.classList.add('outline')
-  // restartBtn.style.visibility = '' 
+  restartBtn.style.visibility = '' 
 }
 
 function winner(){
