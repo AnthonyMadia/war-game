@@ -5,7 +5,7 @@
 
 💡 I decided to create this game because it was one of the first card games I played as a child and thought it would be cool to represent it digitially for my first DOM browser game.
 
-## Deploy Link:
+## Deployment Link:
 https://anthonymadia.github.io/war-game/
 
 
