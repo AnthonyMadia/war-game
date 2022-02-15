@@ -31,7 +31,7 @@ restartBtn.addEventListener('click', render)
 
 
 /*-------------------------------- Functions --------------------------------*/
-init()
+// init()
 
 function init() {
   shuffle(deck)

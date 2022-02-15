@@ -139,9 +139,22 @@ body {
 }
 
 #score-board {
+  display: grid;
+  grid-template: 1fr / 1fr 1fr
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  font-size: 20px;
   border: solid red .2rem;
   border-radius: 14%;
   padding: 30px 20px;
+}
+
+#player-score,
+#computer-score {
+  text-align: center;
+  margin: 10px;
 }
 
 footer {

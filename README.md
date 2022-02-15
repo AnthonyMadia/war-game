@@ -9,6 +9,9 @@
 https://anthonymadia.github.io/war-game/
 
 
+## Picture of Initial Game Setup
+![alt text](/GameImages/Readme.png)
+
 ## How to Play:
 ♦️ Playing the war card game is as simple as clicking the "Turn Card" button displayed in the browser. 
 
