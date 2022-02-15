@@ -50,8 +50,13 @@ function handleClick(evt) {
   
   fillHands()
   showCards()
-  compare() 
-  winner()
+  compare()
+  if (playerDeck.length === undefined || playerHand.length === undefined) {
+    message.textContent = `Computer is the winner.`
+  } else if (computerDeck.length === undefined && compHand.length === undefined) {
+    message.textContent = `Player is the winner.`
+  }
+  // winner()
 }
 
 
@@ -69,13 +74,9 @@ function shuffle(deck) {
   
 function fillHands() {
   playerPick = playerDeck.pop()
-  console.log(`Fill hands playerPick - ${playerPick}`)
   playerHand.push(playerPick)
-  console.log(`Player Hand = ${playerHand}`)
   compPick = computerDeck.pop()
-  console.log(`Fill hands compPick - ${compPick}`)
   compHand.push(compPick)
-  console.log(`Comp Hand = ${playerHand}`)
 }
 
 function showCards() {
@@ -121,7 +122,7 @@ function war() {
   // Get the value of the war card
   let pWarPlayerValue = keyValues[playerWarCards[playerWarCards.length - 1]]
   let cWarPlayerValue = keyValues[compWarCards[compWarCards.length - 1]]
-  console.log(pWarPlayerValue, cWarPlayerValue)
+  
   if (pWarPlayerValue > cWarPlayerValue) {
     for (let i = 0; i < compWarCards.length; i++) {
       playerDeck.unshift(compWarCards[i])
@@ -130,7 +131,6 @@ function war() {
     message.textContent = `PLAYER HAS WON WAR. Length of Card deck is ^ ${playerDeck.length}`
     playerCard.className = `card xlarge player-card ${playerWarCards[playerWarCards.length - 1]}`
     computerCard.className = `card xlarge player-card ${compWarCards[compWarCards.length - 1]}`
-    console.log(playerWarCards[playerWarCards.length - 1])
   } else if (pWarPlayerValue < cWarPlayerValue) {
     for (let i = 0; i < playerWarCards.length; i++) {
       computerDeck.unshift(playerWarCards[i])
@@ -139,7 +139,6 @@ function war() {
     message.textContent = `COMPUTER HAS WON WAR. Length of comp deck is ^ ${computerDeck.length}`
     playerCard.className = `card xlarge player-card ${playerWarCards[playerWarCards.length - 1]}`
     computerCard.className = `card xlarge player-card ${compWarCards[compWarCards.length - 1]}`
-    console.log(compWarCards[compWarCards.length - 1])
 
   }
   turnCard.style.visibility = '' 
