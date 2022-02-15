@@ -55,16 +55,6 @@ function handleClick(evt) {
   winner()
 }
 
-function winner(){
-  if (playerDeck.length === 0 && playerHand.length === 0) {
-    console.log('sanity check')
-    message.textContent = `Computer is the winner.`
-  }
-  else if (computerDeck.length === 0 && compHand.length === 0) {
-    message.textContent = `Player is the winner.`
-  }
-  restartBtn.removeAttribute('hidden')
-}
 
 function shuffle(deck) {
   for( 
@@ -80,17 +70,19 @@ function shuffle(deck) {
   
 function fillHands() {
   playerPick = playerDeck.pop()
+  console.log(`Fill hands playerPick - ${playerPick}`)
   playerHand.push(playerPick)
+  console.log(`Player Hand = ${playerHand}`)
   compPick = computerDeck.pop()
+  console.log(`Fill hands compPick - ${compPick}`)
   compHand.push(compPick)
+  console.log(`Comp Hand = ${playerHand}`)
 }
 
 function showCards() {
   playerCard.className = `card xlarge player-card ${playerHand[playerHand.length - 1]}`
   computerCard.className = `card xlarge comp-card ${compHand[compHand.length - 1]}`
 }
-
-
 
 function compare() {
   // if (playerPick === null || compPick === null) {
@@ -102,42 +94,43 @@ function compare() {
   if (pCardValue > cCardValue) {
     let playerCardPush = compHand.pop()
     playerDeck.unshift(playerCardPush)
+    //move cards from player hand into player deck
+    playerDeck.unshift(playerHand)
     message.textContent = '🧑 Player wins this round!'
-
+    
   } else if (pCardValue < cCardValue) {
     let computerCardPush = playerHand.pop()
     computerDeck.unshift(computerCardPush)
+    // move cards from comp Hand into comp deck
+    computerDeck.unshift(compHand)
     message.textContent = '💻 Computer wins this round!'
   } 
   else if (pCardValue === cCardValue) {
-    console.log('Tie game!!!!!')
+    console.log('WAR!!!!!')
     message.textContent = '⚔️ WAR ⚔️'
     war()
   }
-  console.log(playerDeck.length)
-  console.log(computerDeck.length)
 }
 
 
 
 function war() {
+  let playerWarCards = playerDeck.slice(-4)
+  let compWarCards= computerDeck.slice(-4)
+  let pWarPlayerValue = keyValues[playerWarCards[playerWarCards.length - 1]]
+  let cWarPlayerValue = keyValues[compWarCards[compWarCards.length - 1]]
+  console.log(pWarPlayerValue, cWarPlayerValue)
+  // if () {
+  //   for (let i = 0; i < playerWarCards.length; i++) {
+  //     computerDeck.push(playerWarCards[i])
+  //   }
+  // }
+
   
-  let playerWarValues = playerDeck.slice(-3)
-  let compWarValues = computerDeck.slice(-3)
-  console.log(playerDeck.length)
-  for (let i = 0; i < playerWarValues.length; i++) {
-    computerDeck.push(playerWarValues[i])
-    playerDeck.splice(-3, 3)
 
-  }
-  console.log(playerDeck.length)
-  
-
-  for (let i = 0; i < compWarValues.length; i++) {
-    playerDeck.push(compWarValues[i]);
-  }
-
-  compare()
+  // for (let i = 0; i < compWarValues.length; i++) {
+  //   playerDeck.push(compWarValues[i]);
+  // }
 }
 
 
@@ -146,4 +139,15 @@ function render(evt) {
   playerCard.classList.add('outline')
   computerCard.classList.add('outline')
   // restartBtn.style.visibility = '' 
+}
+
+function winner(){
+  if (playerDeck.length === 0 && playerHand.length === 0) {
+    console.log('sanity check')
+    message.textContent = `Computer is the winner.`
+  }
+  else if (computerDeck.length === 0 && compHand.length === 0) {
+    message.textContent = `Player is the winner.`
+  }
+  restartBtn.removeAttribute('hidden')
 }
