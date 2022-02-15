@@ -140,7 +140,6 @@ body {
 
 #score-board {
   display: grid;
-  grid-template: 1fr / 1fr 1fr
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -150,6 +149,7 @@ body {
   border-radius: 14%;
   padding: 30px 20px;
 }
+
 
 #player-score,
 #computer-score {
