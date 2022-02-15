@@ -5,6 +5,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="./images/war-favicon.png" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merienda+One&display=swap" rel="stylesheet">
   <link 
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
     rel="stylesheet" 
@@ -18,22 +21,22 @@
   <title>War</title>
 </head>
 <body>
-  <nav id="header">
-    <h1 >Welcome to War!</h1>
-  </nav>
   <div class="container" id="game-board">
-    <!-- # of Player Cards Left -->
-    <div class="player-area">
-        <div class="p-cards-left">Cards Left</div>
+    <h1 class="header" >Welcome to War!</h1>
+    <div class="p-cards-left">Player Cards Left: </div>
+    <div class="c-cards-left">Computer Cards Left: </div>
+      <!-- # of Player Cards Left -->
+      <div class="player-area">
           <!-- Player Deck -->
           <div class="card xlarge back-blue shadow player-deck"></div>
           <!-- Player Hand -->
           <div class="card xlarge outline player-card"></div>
         </div>
         <div class="middle">
-            <!-- Buttons -->
+            <!-- Buttons and Message-->
             <button class="btn btn-primary" id="turn-btn">Turn Card</button>
             <button class="btn btn-danger" id="restart-btn">Restart</button>
+            <div class="message">Message</div>
             <!-- Score Board! -->
             <div id="score-board">
                 <header>SCOREBOARD</header>
@@ -41,21 +44,21 @@
                     <div>
                         <div id="player-score">Player-Score</div>
                         <div id="computer-score">Computer-Score</div>
+                        
                     </div>
                 </div>
             </div>
             <!-- End ScoreBoard -->
         </div>
-        <div class="message">Message</div>
         <div class="comp-area">
-            <!-- # of Computer Cards Left -->
-            <div class="c-cards-left"></div>
-            <!-- Computer Deck -->
-        <div class="card xlarge back-blue shadow comp-deck"></div>
-        <!-- Computer Hand -->
-      <div class="card xlarge outline comp-card"></div>
-    </div>
+          <!-- # of Computer Cards Left -->
+          <!-- Computer Hand -->
+        <div class="card xlarge outline comp-card"></div>
+          <!-- Computer Deck -->
+      <div class="card xlarge back-blue shadow comp-deck"></div>
   </div>
-  <footer>Footer that is foot'in</footer>
+        
+  <footer>Created by Anthony Madia</footer>
+  </div>
 </body>
 </html>

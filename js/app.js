@@ -35,7 +35,7 @@ init()
 
 function init() {
   shuffle(deck)
-  message.textContent = 'Message from init function (change)'
+  message.textContent = 'Changing message'
   pCardsLeft.textContent = ''
   cCardsLeft.textContent = ''
   scoreBoard.innerHTML = 'Scores in init'
@@ -53,10 +53,12 @@ function handleClick(evt) {
   compare()
   if (playerDeck.length === undefined || playerHand.length === undefined) {
     message.textContent = `Computer is the winner.`
+    confetti.start(2000)
   } else if (computerDeck.length === undefined && compHand.length === undefined) {
     message.textContent = `Player is the winner.`
+    confetti.start(2000)
   }
-  // winner()
+  // winner() // confetti here too
 }
 
 
@@ -77,7 +79,9 @@ function fillHands() {
   playerHand.push(playerPick)
   compPick = computerDeck.pop()
   compHand.push(compPick)
+  // outline()
 }
+
 
 function showCards() {
   playerCard.className = `card xlarge player-card ${playerHand[playerHand.length - 1]}`
@@ -103,7 +107,7 @@ function compare() {
     computerDeck.unshift(computerCardPush)
     // move cards from comp Hand into comp deck
     computerDeck.unshift(compHand)
-    message.textContent = '💻 Computer wins this round!'
+    message.textContent = 'Computer wins this round!💻 '
   } 
   else if (pCardValue === cCardValue) {
     message.textContent = '⚔️ WAR ⚔️'
