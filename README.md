@@ -21,3 +21,14 @@ https://war-card-game.surge.sh/
 
 ⚔️ In the event where the player's and computer's card equal each other, "War" will be displayed and the winner will have the loser's cards added to their deck.
 
+## Cool Features
+
+🔹 Sword and War audio
+🔹 Gradient color
+🔹 Track length of player and computer deck
+🔹 Displayw who won the round after each turn
+
+## Currently Working on:
+
+👨‍💻 Adding winner's score to local storage
+

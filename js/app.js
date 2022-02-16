@@ -19,12 +19,14 @@ const computerCard = document.querySelector('.comp-card')
 const pCardsLeft = document.querySelector('.p-cards-left') 
 const cCardsLeft = document.querySelector('.c-cards-left') 
 const scoreBoard = document.querySelector('#score-board') //score board
-const playerScore = document.querySelector('#player-score') //score board
-const computerScore = document.querySelector('#computer-score') //scoreboard
 const playerOutline = document.querySelector('.player-deck')
 const computerOutline = document.querySelector('.comp-deck')
 const pLocalStorage = document.getElementById('p-score')
 const cLocalStorage = document.getElementById('c-score')
+
+// local storage variables
+const playerScore = document.querySelector('#player-score') 
+const computerScore = document.querySelector('#computer-score') 
 
 /*----------------------------- Audio  --------------------------------------*/
 const sword1 = new Audio('../Audio/swordswing1.mp3')
@@ -192,3 +194,7 @@ function winner(){
     confetti.start(2000)
   }
 }
+
+
+/*---------------------------- local storage ----------------------------*/
+
