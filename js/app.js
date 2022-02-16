@@ -23,6 +23,8 @@ const playerScore = document.querySelector('#player-score') //score board
 const computerScore = document.querySelector('#computer-score') //scoreboard
 const playerOutline = document.querySelector('.player-deck')
 const computerOutline = document.querySelector('.comp-deck')
+const pLocalStorage = document.getElementById('p-score')
+const cLocalStorage = document.getElementById('c-score')
 
 /*----------------------------- Event Listeners -----------------------------*/
 turnCard.addEventListener('click', handleClick)
@@ -31,16 +33,14 @@ restartBtn.addEventListener('click', render)
 
 
 /*-------------------------------- Functions --------------------------------*/
-// init()
+init()
 
 function init() {
   shuffle(deck)
-  message.textContent = 'Changing message'
+  outline()
+  message.textContent = 'Press "Turn Card" to start!'
   pCardsLeft.textContent = ''
   cCardsLeft.textContent = ''
-  scoreBoard.innerHTML = 'Scores in init'
-  playerCard.innerHTML = ''
-  computerCard.innerHTML = ''
   restartBtn.style.visibility = 'hidden'
 }
 
@@ -51,14 +51,16 @@ function handleClick(evt) {
   fillHands()
   showCards()
   compare()
-  if (playerDeck.length === undefined || playerHand.length === undefined) {
-    message.textContent = `Computer is the winner.`
-    confetti.start(2000)
-  } else if (computerDeck.length === undefined && compHand.length === undefined) {
-    message.textContent = `Player is the winner.`
-    confetti.start(2000)
+  winner() 
+}
+
+function outline() {
+  if(playerDeck.length < 22) {
+    playerDeck.classList.remove = 'card xlarge back-blue player-deck'
   }
-  // winner() // confetti here too
+  if (computerDeck.length < 22) {
+    computerDeck.className = 'card xlarge back-blue comp-deck'
+  }
 }
 
 
@@ -86,20 +88,23 @@ function fillHands() {
 function showCards() {
   playerCard.className = `card xlarge player-card ${playerHand[playerHand.length - 1]}`
   computerCard.className = `card xlarge comp-card ${compHand[compHand.length - 1]}`
+
+  pCardsLeft.textContent = `Player-Score: ${playerDeck.length}` 
+  cCardsLeft.textContent = `Computer-Score: ${computerDeck.length}` 
 }
 
 function compare() {
-  // if (playerPick === null || compPick === null) {
-  //   return console.log('null stuff')
-  // }
   const pCardValue  = keyValues[playerPick]
   const cCardValue = keyValues[compPick]
+
+
 
   if (pCardValue > cCardValue) {
     let playerCardPush = compHand.pop()
     playerDeck.unshift(playerCardPush)
     //move cards from player hand into player deck
     playerDeck.unshift(playerHand)
+    message.style.color = "aqua"
     message.textContent = '🧑 Player wins this round!'
     
   } else if (pCardValue < cCardValue) {
@@ -107,12 +112,13 @@ function compare() {
     computerDeck.unshift(computerCardPush)
     // move cards from comp Hand into comp deck
     computerDeck.unshift(compHand)
+    message.style.color = "pink"
     message.textContent = 'Computer wins this round!💻 '
   } 
   else if (pCardValue === cCardValue) {
-    message.textContent = '⚔️ WAR ⚔️'
+    message.textContent = '⚔️ WAR ⚔️ '
     turnCard.style.visibility = 'hidden' 
-    setTimeout(() => {war()}, 2000);
+    setTimeout(() => war(), 2000);
     
   }
 }
@@ -120,40 +126,42 @@ function compare() {
 
 
 
-function war() {
-  let playerWarCards = playerDeck.slice(-4)
-  let compWarCards= computerDeck.slice(-4)
-  // Get the value of the war card
-  let pWarPlayerValue = keyValues[playerWarCards[playerWarCards.length - 1]]
-  let cWarPlayerValue = keyValues[compWarCards[compWarCards.length - 1]]
-  
-  if (pWarPlayerValue > cWarPlayerValue) {
-    for (let i = 0; i < compWarCards.length; i++) {
-      playerDeck.unshift(compWarCards[i])
-    }
-    removeCards(computerDeck)
-    message.textContent = `PLAYER HAS WON WAR. Length of Card deck is ^ ${playerDeck.length}`
-    playerCard.className = `card xlarge player-card ${playerWarCards[playerWarCards.length - 1]}`
-    computerCard.className = `card xlarge player-card ${compWarCards[compWarCards.length - 1]}`
-  } else if (pWarPlayerValue < cWarPlayerValue) {
-    for (let i = 0; i < playerWarCards.length; i++) {
-      computerDeck.unshift(playerWarCards[i])
-    }
-    removeCards(playerDeck)
-    message.textContent = `COMPUTER HAS WON WAR. Length of comp deck is ^ ${computerDeck.length}`
-    playerCard.className = `card xlarge player-card ${playerWarCards[playerWarCards.length - 1]}`
-    computerCard.className = `card xlarge player-card ${compWarCards[compWarCards.length - 1]}`
 
+function war() {
+  if (playerDeck.length < 4) {
+    message.textContent = `Computer is the winner.`
+    confetti.start(2000)
+  } else if (computerDeck.length < 4) {
+    message.textContent = `Player is the winner.`
+    confetti.start(2000)
+  } else {
+    let playerWarCards = playerDeck.splice(-4, 4)
+    let compWarCards= computerDeck.splice(-4, 4)
+    // Get the value of the war card
+    let pWarPlayerValue = keyValues[playerWarCards[playerWarCards.length - 1]]
+    let cWarPlayerValue = keyValues[compWarCards[compWarCards.length - 1]]
+  
+    
+    if (pWarPlayerValue > cWarPlayerValue) {
+      for (let i = 0; i < compWarCards.length; i++) {
+        playerDeck.unshift(compWarCards[i])
+      }
+      message.textContent = `PLAYER HAS WON WAR`
+      playerCard.className = `card xlarge player-card ${playerWarCards[playerWarCards.length - 1]}`
+      computerCard.className = `card xlarge player-card ${compWarCards[compWarCards.length - 1]}`
+    } else if (pWarPlayerValue < cWarPlayerValue) {
+      for (let i = 0; i < playerWarCards.length; i++) {
+        computerDeck.unshift(playerWarCards[i])
+      }
+      message.textContent = `COMPUTER HAS WON WAR`
+      playerCard.className = `card xlarge player-card ${playerWarCards[playerWarCards.length - 1]}`
+      computerCard.className = `card xlarge player-card ${compWarCards[compWarCards.length - 1]}`
+  
+    }
   }
   turnCard.style.visibility = '' 
 }
 
-function removeCards(arr) {
-  arr.pop()
-  arr.pop()
-  arr.pop()
-  arr.pop()
-}
 
 function render(evt) {
   
@@ -163,12 +171,13 @@ function render(evt) {
 }
 
 function winner(){
-  if (playerDeck.length === 0 && playerHand.length === 0) {
-    console.log('sanity check')
+  if (playerDeck.length < 3) {
     message.textContent = `Computer is the winner.`
+    
   }
-  else if (computerDeck.length === 0 && compHand.length === 0) {
+  else if (computerDeck.length < 3) {
     message.textContent = `Player is the winner.`
+    
   }
   restartBtn.removeAttribute('hidden')
 }
