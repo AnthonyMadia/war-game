@@ -26,6 +26,12 @@ const computerOutline = document.querySelector('.comp-deck')
 const pLocalStorage = document.getElementById('p-score')
 const cLocalStorage = document.getElementById('c-score')
 
+/*----------------------------- Audio  --------------------------------------*/
+const sword1 = new Audio('../Audio/swordswing1.mp3')
+const sword2 = new Audio('../Audio/swordswing2.mp3')
+const whoosh = new Audio('../Audio/metalwhoosh.wav')
+const explosion = new Audio('../Audio/war-explosion.mp3')
+
 /*----------------------------- Event Listeners -----------------------------*/
 turnCard.addEventListener('click', handleClick)
 restartBtn.addEventListener('click', render)
@@ -105,6 +111,8 @@ function compare() {
     //move cards from player hand into player deck
     playerDeck.unshift(playerHand)
     message.style.color = "aqua"
+    whoosh.volume = .10
+    whoosh.play()
     message.textContent = '🧑 Player wins this round!'
     
   } else if (pCardValue < cCardValue) {
@@ -113,18 +121,19 @@ function compare() {
     // move cards from comp Hand into comp deck
     computerDeck.unshift(compHand)
     message.style.color = "pink"
+    sword2.volume = .10
+    sword2.play()
     message.textContent = 'Computer wins this round!💻 '
   } 
   else if (pCardValue === cCardValue) {
     message.textContent = '⚔️ WAR ⚔️ '
     turnCard.style.visibility = 'hidden' 
+    explosion.volume = .10
+    explosion.play()
     setTimeout(() => war(), 2000);
     
   }
 }
-
-
-
 
 
 function war() {
@@ -173,11 +182,12 @@ function render(evt) {
 function winner(){
   if (playerDeck.length < 3) {
     message.textContent = `Computer is the winner.`
+    confetti.start(2000)
     
   }
   else if (computerDeck.length < 3) {
     message.textContent = `Player is the winner.`
-    
+    confetti.start(2000)
   }
   restartBtn.removeAttribute('hidden')
 }
