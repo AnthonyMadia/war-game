@@ -24,9 +24,12 @@ https://war-card-game.surge.sh/
 ## Cool Features
 
 🔹 Sword and War audio
+
 🔹 Gradient color
+
 🔹 Track length of player and computer deck
-🔹 Displayw who won the round after each turn
+
+🔹 Display who won the round after each turn
 
 ## Currently Working on:
 
