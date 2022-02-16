@@ -14,10 +14,10 @@ let playerDeck = [], warArray = [], computerDeck = [], playerHand = [], compHand
 const turnCard = document.querySelector('#turn-btn')
 const restartBtn = document.querySelector('#restart-btn')
 const message = document.querySelector('.message')
-const playerCard = document.querySelector('.player-card') // add class to player's card
-const computerCard = document.querySelector('.comp-card') // add class to computer's card
-const pCardsLeft = document.querySelector('.p-cards-left') // player cards left message
-const cCardsLeft = document.querySelector('.c-cards-left') // computer cards message
+const playerCard = document.querySelector('.player-card') 
+const computerCard = document.querySelector('.comp-card') 
+const pCardsLeft = document.querySelector('.p-cards-left') 
+const cCardsLeft = document.querySelector('.c-cards-left') 
 const scoreBoard = document.querySelector('#score-board') //score board
 const playerScore = document.querySelector('#player-score') //score board
 const computerScore = document.querySelector('#computer-score') //scoreboard
@@ -167,7 +167,7 @@ function war() {
       message.textContent = `COMPUTER HAS WON WAR`
       playerCard.className = `card xlarge player-card ${playerWarCards[playerWarCards.length - 1]}`
       computerCard.className = `card xlarge player-card ${compWarCards[compWarCards.length - 1]}`
-  
+      
     }
   }
   turnCard.style.visibility = '' 

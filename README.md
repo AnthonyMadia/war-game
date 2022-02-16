@@ -6,7 +6,7 @@
 💡 I decided to create this game because it was one of the first card games I played as a child and thought it would be cool to represent it digitially for my first DOM browser game.
 
 ## Deployment Link:
-https://anthonymadia.github.io/war-game/
+https://war-card-game.surge.sh/
 
 
 ## Picture of Initial Game Setup
