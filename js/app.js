@@ -47,25 +47,26 @@ function init() {
   message.textContent = 'Press "Turn Card" to start!'
   pCardsLeft.textContent = ''
   cCardsLeft.textContent = ''
-  restartBtn.style.visibility = 'hidden'
+  restartBtn.style.visibility = ''
 }
 
 function handleClick(evt) {
   playerCard.classList.remove('outline')
   computerCard.classList.remove('outline')
-  
+  restartBtn.style.visibility = 'hidden'
   fillHands()
   showCards()
   compare()
   winner() 
+  outline()
 }
 
 function outline() {
   if(playerDeck.length < 22) {
-    playerDeck.classList.remove = 'card xlarge back-blue player-deck'
+    playerOutline.className = 'card xlarge back-blue player-deck'
   }
   if (computerDeck.length < 22) {
-    computerDeck.className = 'card xlarge back-blue comp-deck'
+    computerOutline.className = 'card xlarge back-blue comp-deck'
   }
 }
 
@@ -87,7 +88,6 @@ function fillHands() {
   playerHand.push(playerPick)
   compPick = computerDeck.pop()
   compHand.push(compPick)
-  // outline()
 }
 
 
@@ -140,9 +140,11 @@ function war() {
   if (playerDeck.length < 4) {
     message.textContent = `Computer is the winner.`
     confetti.start(2000)
+    render()
   } else if (computerDeck.length < 4) {
     message.textContent = `Player is the winner.`
     confetti.start(2000)
+    render()
   } else {
     let playerWarCards = playerDeck.splice(-4, 4)
     let compWarCards= computerDeck.splice(-4, 4)
@@ -189,5 +191,4 @@ function winner(){
     message.textContent = `Player is the winner.`
     confetti.start(2000)
   }
-  restartBtn.removeAttribute('hidden')
 }
