@@ -180,13 +180,6 @@ function war() {
 }
 
 
-function render(evt) {
-  
-  playerCard.classList.add('outline')
-  computerCard.classList.add('outline')
-  restartBtn.style.visibility = '' 
-}
-
 function winner(){
   if (playerDeck.length < 3) {
     message.textContent = `Computer is the winner.`
