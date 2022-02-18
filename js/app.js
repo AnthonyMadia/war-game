@@ -128,10 +128,14 @@ function compare() {
     message.textContent = 'Computer wins this round!💻 '
   } 
   else if (pCardValue === cCardValue) {
+    
     message.textContent = '⚔️ WAR ⚔️ '
     turnCard.style.visibility = 'hidden' 
     explosion.volume = .10
     explosion.play()
+    setTimeout(() => {
+      showCards()
+    }, 2000);
     setTimeout(() => war(), 2000);
     
   }
