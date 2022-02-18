@@ -38,7 +38,7 @@ https://war-card-game.surge.sh/
 
 🔹 Display who won the round after each turn
 
-## Currently Working on:
+## Currently Working On:
 
 👨‍💻 Adding winner's score to local storage to update Scoreboard
 
