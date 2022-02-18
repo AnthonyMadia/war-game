@@ -40,6 +40,4 @@ https://war-card-game.surge.sh/
 
 ## Currently Working on:
 
-👨‍💻 Adding winner's score to local storage
-
-👨‍💻 Adding winner's score to local storage
+👨‍💻 Adding winner's score to local storage to update Scoreboard
