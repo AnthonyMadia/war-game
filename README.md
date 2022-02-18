@@ -41,3 +41,7 @@ https://war-card-game.surge.sh/
 ## Currently Working on:
 
 👨‍💻 Adding winner's score to local storage to update Scoreboard
+
+## Credits:
+
+🔴 CSS Card Deck is attributed to General Assembly
