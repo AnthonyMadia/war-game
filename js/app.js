@@ -164,6 +164,7 @@ function war() {
         playerDeck.unshift(compWarCards[i])
       }
       message.textContent = `PLAYER HAS WON WAR`
+      confetti.start(1000)
       playerCard.className = `card xlarge player-card ${playerWarCards[playerWarCards.length - 1]}`
       computerCard.className = `card xlarge player-card ${compWarCards[compWarCards.length - 1]}`
     } else if (pWarPlayerValue < cWarPlayerValue) {
